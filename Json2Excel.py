@@ -35,7 +35,7 @@ def POST(url, cookie):
                 "User_Token": ""
             },
             "REQUEST_DATA": {
-                "billCode": "HP20200720000606",
+                "billCode": "HP20200722002523",
                 "billDateEnd": "2020-07-31",
                 "billDateStart": "2020-07-01",
                 "orgCodeList": ["BZJ00"]
@@ -49,9 +49,7 @@ def POST(url, cookie):
 
     req = requests.post(url, json=post_data, headers=headers, verify=False)
     data = json.loads(req.text)
-    response_ = data['RESPONSE']
-    data_ = response_['RETURN_DATA']
-    value_ = data_['value']
+    value_ = data['RESPONSE']['RETURN_DATA']['value']
     # print(req.text)
     list_ = value_[0]['billDetailApiList']
     print(list_)
@@ -61,4 +59,4 @@ def POST(url, cookie):
 if __name__ == '__main__':
     list_ = POST('http://uatocmsapi.crb.cn/crb-third-party-api-sec/invoiceApi/getFinishedWine', 'e342W3WeJH423rr')
     # 转excel
-    json2Excel(list_)
+    #json2Excel(list_)

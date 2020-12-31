@@ -2,24 +2,29 @@ import xlrd
 import xlwt
 
 
+
 def read_excel1():
     path = "D:\\"
     # 生产文件名称、位置
     full_path = path + "perform1.sql"
     file = open(full_path, 'w')
     # 打开文件
-    workbook = xlrd.open_workbook(r'D:\\代客下单订单导入20200601184020.xls')
+    workbook = xlrd.open_workbook(r'D:\\夜场客户.xlsx')
     # sheet 0
     sheet = workbook.sheet_by_index(0)
     rows = sheet.nrows
     # 排除第一列循环每行
+    total = ""
     for i in range(rows)[1:]:
         # 获取每行的第二列
-        cell2 = sheet.cell_value(i, 2)
+        cell2 = sheet.cell_value(i, 3)
         # 获取每行的第三列
-        cell3 = sheet.cell_value(i, 3)
-        file.writelines("update " + cell2 + " set DEL_FLAG = 'Y' where id = " + cell3 + ";")
-        file.writelines("\n")
+       # cell3 = sheet.cell_value(i, 3)
+       # print(cell2 + ",")
+        total = total +"'" +cell2 + "',"
+    print(total)
+       # file.writelines("update " + cell2 + " set DEL_FLAG = 'Y' where id = " + cell3 + ";")
+       # file.writelines("\n")
 
 
 def read_excel(num):
